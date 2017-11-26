@@ -14,6 +14,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.xumeng.bookstore.Service.impl.UserSecurityService;
 import com.xumeng.bookstore.utility.SecurityUtility;
 
+/* This is a configuration class, spring will register this configuration */
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -39,11 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
+		
+		/* For any requests, if it matches PUBLIC_MATCHES, we allow it; otherwise we do authentication */
 		http
 			.authorizeRequests()
 			.antMatchers(PUBLIC_MATCHES)
 			.permitAll().anyRequest().authenticated();
 		
+		/* disable csrf and cors; check login; login; logout*/
 		http
 			.csrf().disable().cors().disable()
 			.formLogin().failureUrl("/login?error").defaultSuccessUrl("/")
@@ -55,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.rememberMe();
 	}
 	
+	/* encode password to store it in database safely, not the raw password*/
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());

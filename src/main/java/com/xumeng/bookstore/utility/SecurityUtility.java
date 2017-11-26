@@ -8,8 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface SecurityUtility {
-	static final String SALT = "salt"; // salt should be protected carefully =>"private
+public class SecurityUtility {
+	private static final String SALT = "salt"; // salt should be protected carefully =>"private
 	
 	@Bean
 	public static BCryptPasswordEncoder passwordEncoder() {
