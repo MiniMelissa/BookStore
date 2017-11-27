@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		/* For any requests, if it matches PUBLIC_MATCHES, we allow it; otherwise we do authentication */
 		http
 			.authorizeRequests()
+//			.antMatchers("/**")
 			.antMatchers(PUBLIC_MATCHES)
 			.permitAll().anyRequest().authenticated();
 		

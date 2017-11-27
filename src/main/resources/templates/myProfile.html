@@ -3,10 +3,10 @@
 <head th:replace="common/header :: common-header" />
 
 <body>
-	<div th:replace="common/header :: navbar"></div>
+	<div th:replace="common/header :: navbar"/>
 
 	<div class="container">
-		<div class="row" style="margin-bottom: -50px;">
+		<div class="row" style="margin-bottom: -100px;">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
 					<h2 class="section-headline">
@@ -74,7 +74,7 @@
 										
 										<div class="form-group">
 											<label for="email">Email Address</label>
-											<input type="text" class="form-control" id="email" name="email" th:value="user.email"/>
+											<input type="text" class="form-control" id="email" name="email" th:value="${user.email}"/>
 										</div>
 										<p style="color:#828282">A valid email address. All
 												emails from the system will be sent to this address. The
