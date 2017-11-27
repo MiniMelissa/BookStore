@@ -63,6 +63,7 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border:none;">
 								<div class = "panel-body" style="background-color:#ededed; margi-top:20px;">
+									<div th:if="${param.error != null}" style="color:red;">Incorrect username or password.</div>
 									<form th:action="@{/login}" method="post">
 										<div class="form-group">
 											<label for="username">* Username</label>
