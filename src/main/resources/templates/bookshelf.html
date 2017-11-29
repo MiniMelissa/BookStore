@@ -42,8 +42,7 @@
 								<div th:if="${book != null}">
 									<div class="row">
 										<div class="col-xs-3">
-											<img class="img-responsive shelf-book"
-												th:src="#{adminPath}+@{/image/book}+${book.id}+'.png'" />
+											<img class="img-responsive shelf-book" th:src="#{adminPath}+@{/image/book}+${book.id}+'.png'"/>
 										</div>
 										<div class="col-xs-9">
 											<h4 th:text="book.title"></h4>
