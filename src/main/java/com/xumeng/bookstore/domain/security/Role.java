@@ -16,7 +16,7 @@ public class Role {
 	private int roleId;
 	private String name;
 	
-	/*one role can have different UseRoles, UserRole specify the relationship between Role and Use,
+	/*one role can have different UseRoles, UserRole specify the relationship between Role and User,
 	 *one role can have multiple users */
 	@OneToMany(mappedBy = "role", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Set<UserRole> userRoles = new HashSet<>();
