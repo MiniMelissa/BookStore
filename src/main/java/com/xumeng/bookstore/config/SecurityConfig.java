@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return SecurityUtility.passwordEncoder();
 	}
 	
+//	浏览页面不需要登录
 	private static final String[] PUBLIC_MATCHES = {
 			"/css/**",
 			"/js/**",
@@ -39,7 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/newUser",
 			"/forgetPassword",
 			"/login",
-			"/fonts/**"
+			"/fonts/**",
+			"/bookshelf",
+			"/bookDetail"
 			
 	};
 	
