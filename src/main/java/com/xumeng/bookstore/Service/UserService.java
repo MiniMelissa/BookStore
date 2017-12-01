@@ -3,6 +3,8 @@ package com.xumeng.bookstore.Service;
 import java.util.Set;
 
 import com.xumeng.bookstore.domain.User;
+import com.xumeng.bookstore.domain.UserBilling;
+import com.xumeng.bookstore.domain.UserPayment;
 import com.xumeng.bookstore.domain.security.PasswordResetToken;
 import com.xumeng.bookstore.domain.security.UserRole;
 
@@ -18,4 +20,6 @@ public interface UserService {
 	User createUser(User user, Set<UserRole> userRoles);
 	
 	User save(User user);
+	
+	void updateUserBilling(UserBilling userBilling, UserPayment userPaymnet, User user);
 }

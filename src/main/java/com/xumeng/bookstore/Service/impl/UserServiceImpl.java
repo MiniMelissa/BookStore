@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.xumeng.bookstore.Service.UserService;
 import com.xumeng.bookstore.domain.User;
+import com.xumeng.bookstore.domain.UserBilling;
+import com.xumeng.bookstore.domain.UserPayment;
 import com.xumeng.bookstore.domain.security.PasswordResetToken;
 import com.xumeng.bookstore.domain.security.UserRole;
 import com.xumeng.bookstore.repository.PasswordResetTokenRepository;
@@ -71,5 +73,16 @@ public class UserServiceImpl implements UserService{
 	public User save(User user) {
 		return userRepository.save(user);
 	}
+	
+	@Override
+	public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+		userPayment.setUser(user);
+		userPayment.setUserBilling(userBilling);
+		userPayment.setDefaultPayment(true);
+		userBilling.setUserPayment(userPayment);
+		user.getUserPaymentList().add(userPayment);
+		save(user);
+	}
+
 
 }
