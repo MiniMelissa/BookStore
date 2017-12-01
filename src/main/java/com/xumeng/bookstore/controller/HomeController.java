@@ -31,6 +31,8 @@ import com.xumeng.bookstore.Service.UserService;
 import com.xumeng.bookstore.Service.impl.UserSecurityService;
 import com.xumeng.bookstore.domain.Book;
 import com.xumeng.bookstore.domain.User;
+import com.xumeng.bookstore.domain.UserBilling;
+import com.xumeng.bookstore.domain.UserPayment;
 import com.xumeng.bookstore.domain.UserShipping;
 import com.xumeng.bookstore.domain.security.PasswordResetToken;
 import com.xumeng.bookstore.domain.security.Role;
@@ -140,7 +142,7 @@ public class HomeController {
 		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("listOfShippingAddresses", true);
 		
-		List<String> stateList = USConstants.listOfISStatesCode;
+		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList", stateList);
 		model.addAttribute("classAcriveEdit", true);
@@ -149,6 +151,86 @@ public class HomeController {
 		
 		
 	}
+	
+	
+	@RequestMapping("/listOfCreditCards")
+	public String listOfCreditCards(Model model, Principal principal, HttpServletRequest request) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+//		model.addAttribute("orderList", user.orderList());
+		
+		model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfShippingAddresses", true);
+		
+		return "myProfile";
+	}
+	
+	@RequestMapping("/listOfShippingAddresses")
+	public String listOfShippingAddresses(Model model, Principal principal, HttpServletRequest request) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+//		model.addAttribute("orderList", user.orderList());
+		
+		model.addAttribute("listOfCreditsCards", true);
+		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfShippingAddresses", true);
+		
+		return "myProfile";
+	}
+	
+	@RequestMapping("/addNewCreditCard")
+	public String addNewCreditCard(Model model, Principal principal) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("addNewCreditCard", true);
+		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfShippingAddresses", true);
+
+		
+		UserBilling userBilling = new UserBilling();
+		UserPayment userPayment = new UserPayment();
+		
+		model.addAttribute("userBilling", userBilling);
+		model.addAttribute("userPayment", userPayment);
+		
+		List<String> stateList = USConstants.listOfUSStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+//		model.addAttribute("orderList", user.orderList());
+
+		return "myProfile";
+	}
+	
+	@RequestMapping("/addNewShippingAddress")
+	public String addNewShippingAddress(Model model, Principal principal) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("addNewShippingAddress", true);
+		model.addAttribute("classActiveBilling", true);
+		model.addAttribute("listOfCreditsCards", true);
+
+		UserShipping userShipping = new UserShipping();
+		
+		
+		model.addAttribute("userShipping", userShipping);
+		
+		List<String> stateList = USConstants.listOfUSStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+//		model.addAttribute("orderList", user.orderList());
+
+		return "myProfile";
+	}
+	
 
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
 	public String newUserPost(HttpServletRequest request, @ModelAttribute("email") String userEmail,

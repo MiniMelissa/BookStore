@@ -66,8 +66,8 @@ public class USConstants {
 		
 	};
 	
-	public final static List<String> listOfISStatesCode = new ArrayList<>(mapOfUSStates.keySet());
-	public final static List<String> listOfISStatesName = new ArrayList<>(mapOfUSStates.values());
+	public final static List<String> listOfUSStatesCode = new ArrayList<>(mapOfUSStates.keySet());
+	public final static List<String> listOfUSStatesName = new ArrayList<>(mapOfUSStates.values());
 
 	
 }
