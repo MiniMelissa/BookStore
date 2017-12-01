@@ -2,6 +2,7 @@ package com.xumeng.bookstore.controller;
 
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -30,11 +31,13 @@ import com.xumeng.bookstore.Service.UserService;
 import com.xumeng.bookstore.Service.impl.UserSecurityService;
 import com.xumeng.bookstore.domain.Book;
 import com.xumeng.bookstore.domain.User;
+import com.xumeng.bookstore.domain.UserShipping;
 import com.xumeng.bookstore.domain.security.PasswordResetToken;
 import com.xumeng.bookstore.domain.security.Role;
 import com.xumeng.bookstore.domain.security.UserRole;
 import com.xumeng.bookstore.utility.MailConstructor;
 import com.xumeng.bookstore.utility.SecurityUtility;
+import com.xumeng.bookstore.utility.USConstants;
 
 @Controller
 public class HomeController {
@@ -119,6 +122,32 @@ public class HomeController {
 		model.addAttribute("forgetPasswordEmailSent", "true");
 
 		return "myAccount";
+	}
+	
+	@RequestMapping("/myProfile")
+	public String myProfile(Model model, Principal principal) {
+		
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+//		model.addAllAttributes("orderList", user.getOrderList());
+		
+		UserShipping userShipping =  new UserShipping();
+		model.addAttribute("userShipping", userShipping);
+		
+		model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("listOfShippingAddresses", true);
+		
+		List<String> stateList = USConstants.listOfISStatesCode;
+		Collections.sort(stateList);
+		model.addAttribute("stateList", stateList);
+		model.addAttribute("classAcriveEdit", true);
+		
+		return "myProfile";
+		
+		
 	}
 
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
