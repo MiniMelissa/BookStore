@@ -12,12 +12,14 @@ import com.xumeng.bookstore.Service.UserService;
 import com.xumeng.bookstore.domain.User;
 import com.xumeng.bookstore.domain.UserBilling;
 import com.xumeng.bookstore.domain.UserPayment;
+import com.xumeng.bookstore.domain.UserShipping;
 import com.xumeng.bookstore.domain.security.PasswordResetToken;
 import com.xumeng.bookstore.domain.security.UserRole;
 import com.xumeng.bookstore.repository.PasswordResetTokenRepository;
 import com.xumeng.bookstore.repository.RoleRepository;
 import com.xumeng.bookstore.repository.UserPaymentRepository;
 import com.xumeng.bookstore.repository.UserRepository;
+import com.xumeng.bookstore.repository.UserShippingRepository;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserPaymentRepository userPaymentRepository;
+	
+	@Autowired
+	private UserShippingRepository userShippingRepository;
 
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
@@ -88,6 +93,14 @@ public class UserServiceImpl implements UserService{
 		user.getUserPaymentList().add(userPayment);
 		save(user);
 	}
+	
+	@Override
+	public	void updateUserShipping(UserShipping userShipping, User user) {
+		userShipping.setUser(user);
+		userShipping.setUserShippingDefault(true);
+		user.getUserShippingList().add(userShipping);
+		save(user);
+	}
 
 	@Override
 	public 	void setUserDefaultPayment(Long userPaymentId, User user) {
@@ -100,6 +113,21 @@ public class UserServiceImpl implements UserService{
 			}else {
 				userPayment.setDefaultPayment(false);
 				userPaymentRepository.save(userPayment);
+			}
+		}
+	}
+
+	@Override
+	public void setUserDefaultShipping(Long userShippingId, User user) {
+		List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+		
+		for(UserShipping userShipping : userShippingList) {
+			if(userShipping.getId() == userShippingId) {
+				userShipping.setUserShippingDefault(true);
+				userShippingRepository.save(userShipping);
+			}else {
+				userShipping.setUserShippingDefault(false);
+				userShippingRepository.save(userShipping);
 			}
 		}
 	}

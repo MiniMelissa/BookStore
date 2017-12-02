@@ -5,6 +5,7 @@ import java.util.Set;
 import com.xumeng.bookstore.domain.User;
 import com.xumeng.bookstore.domain.UserBilling;
 import com.xumeng.bookstore.domain.UserPayment;
+import com.xumeng.bookstore.domain.UserShipping;
 import com.xumeng.bookstore.domain.security.PasswordResetToken;
 import com.xumeng.bookstore.domain.security.UserRole;
 
@@ -23,5 +24,11 @@ public interface UserService {
 	
 	void updateUserBilling(UserBilling userBilling, UserPayment userPaymnet, User user);
 	
+	void updateUserShipping(UserShipping userShipping, User user);
+	
 	void setUserDefaultPayment(Long userPaymentId, User user);
+	
+	void setUserDefaultShipping(Long userShippingId, User user);
+
+	
 }
