@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.xumeng.bookstore.Service.BookService;
+import com.xumeng.bookstore.Service.UserPaymentService;
 import com.xumeng.bookstore.Service.UserService;
 import com.xumeng.bookstore.Service.impl.UserSecurityService;
 import com.xumeng.bookstore.domain.Book;
@@ -58,6 +59,9 @@ public class HomeController {
 
 	@Autowired
 	private BookService bookSerivce;
+	
+	@Autowired
+	private UserPaymentService userPaymentService;
 
 	@RequestMapping("/")
 	public String index() {
@@ -224,6 +228,37 @@ public class HomeController {
 		model.addAttribute("listOfShippingAddresses", true);
 
 		return "myProfile";
+	}
+	
+	@RequestMapping("/updateCreditCard")
+	public String updateCreditCard(@ModelAttribute("id") Long creditCardId, Principal principal, Model model) {
+		
+//		Retrieve the current login user's id 
+		User user = userService.findByUsername(principal.getName());
+//		Retrieve the credit card's user id through credit card id
+		UserPayment userPayment = userPaymentService.findById(creditCardId);
+		
+		if(user.getId() != userPayment.getUser().getId()) {
+			return "badRequestPage";
+		}else {
+			model.addAttribute("user", user);
+			UserBilling userBilling = userPayment.getUserBilling();
+			model.addAttribute("userPayment", userPayment);
+			model.addAttribute("userBilling", userBilling);
+			
+			List<String> stateList = USConstants.listOfUSStatesCode;
+			Collections.sort(stateList);
+			model.addAttribute("stateList", stateList);
+			
+			model.addAttribute("addNewCreditCard", true);
+			model.addAttribute("classActiveBilling", true);
+			model.addAttribute("listOfShippingAddresses", true);
+			model.addAttribute("userPaymentList", user.getUserPaymentList());
+			model.addAttribute("userShippingList", user.getUserShippingList());
+			
+			return "myProfile";
+			
+		}
 	}
 	
 	@RequestMapping("/addNewShippingAddress")
