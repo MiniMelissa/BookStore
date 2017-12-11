@@ -212,7 +212,7 @@ public class HomeController {
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
 		model.addAttribute("userShippingList", user.getUserShippingList());
-		model.addAttribute("listOfCreditsCards", true);
+		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
 
@@ -300,7 +300,7 @@ public class HomeController {
 		model.addAttribute("userShippingList", user.getUserShippingList());
 //		model.addAttribute("orderList", user.orderList());
 		
-		model.addAttribute("listOfCreditsCards", true);
+		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveShipping", true);
 		model.addAttribute("listOfShippingAddresses", true);
 		
@@ -315,7 +315,7 @@ public class HomeController {
 		model.addAttribute("user", user);
 		model.addAttribute("addNewShippingAddress", true);
 		model.addAttribute("classActiveShipping", true);
-		model.addAttribute("listOfCreditsCards", true);
+		model.addAttribute("listOfCreditCards", true);
 
 		UserShipping userShipping = new UserShipping();
 		
@@ -343,7 +343,7 @@ public class HomeController {
 		model.addAttribute("user", user);
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
 		model.addAttribute("userShippingList", user.getUserShippingList());
-		model.addAttribute("listOfCreditsCards", true);
+		model.addAttribute("listOfCreditCards", true);
 		model.addAttribute("classActiveShipping", true);
 		model.addAttribute("listOfShippingAddresses", true);
 
@@ -371,7 +371,7 @@ public class HomeController {
 			
 			model.addAttribute("addNewShippingAddress", true);
 			model.addAttribute("classActiveShipping", true);
-			model.addAttribute("listOfSCreditCards", true); //why change to listOfCreditCards? Otherwise display update info in same tab as list
+			model.addAttribute("listOfCreditCards", true); //why change to listOfCreditCards? Otherwise display update info in same tab as list
 			model.addAttribute("userPaymentList", user.getUserPaymentList());
 			model.addAttribute("userShippingList", user.getUserShippingList());
 			
