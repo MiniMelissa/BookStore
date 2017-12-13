@@ -22,8 +22,7 @@ public class ShippingAddress {
 	private String shippingAddressZipcode;	
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	private Order order;
 
 	public Long getId() {
 		return id;
@@ -119,16 +118,17 @@ public class ShippingAddress {
 	}
 
 
+	public Order getOrder() {
+		return order;
+	}
 
-	public User getUser() {
-		return user;
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 
 
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 
 

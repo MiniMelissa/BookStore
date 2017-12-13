@@ -18,6 +18,8 @@ public interface UserService {
 	
 	User findByEmail(String email);
 	
+	User findById(Long id);
+	
 	User createUser(User user, Set<UserRole> userRoles);
 	
 	User save(User user);
