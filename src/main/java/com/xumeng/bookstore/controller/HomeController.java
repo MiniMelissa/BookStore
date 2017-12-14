@@ -380,8 +380,7 @@ public class HomeController {
 
 			model.addAttribute("addNewShippingAddress", true);
 			model.addAttribute("classActiveShipping", true);
-			model.addAttribute("listOfCreditCards", true); // why change to listOfCreditCards? Otherwise display update
-															// info in same tab as list
+			model.addAttribute("listOfCreditCards", true); 
 			model.addAttribute("userPaymentList", user.getUserPaymentList());
 			model.addAttribute("userShippingList", user.getUserShippingList());
 			model.addAttribute("orderList", user.getOrderList());
@@ -425,7 +424,7 @@ public class HomeController {
 			userShippingService.removeById(userShippingId);
 
 			model.addAttribute("classActiveShipping", true);
-			model.addAttribute("listOfShippingAddresses", true); // change to listOfCreditCards?
+			model.addAttribute("listOfShippingAddresses", true); 
 			model.addAttribute("userPaymentList", user.getUserPaymentList());
 			model.addAttribute("userShippingList", user.getUserShippingList());
 			model.addAttribute("orderList", user.getOrderList());
@@ -509,7 +508,7 @@ public class HomeController {
 		model.addAttribute("user", user);
 
 		model.addAttribute("classActiveEdit", true);
-		model.addAttribute("orderList", user.getOrderList());
+		//model.addAttribute("orderList", user.getOrderList());
 
 		return "myProfile";
 	}
@@ -561,6 +560,9 @@ public class HomeController {
 			model.addAttribute("user", currentUser);
 			model.addAttribute("classActiveEdit", true);
 			
+			model.addAttribute("listOfShippingAddresses", true);
+			model.addAttribute("listOfCreditCards", true);
+			
 			UserDetails userDetails = userSecurityService.loadUserByUsername(currentUser.getUsername());
 
 			Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(),
@@ -602,8 +604,7 @@ public class HomeController {
 
 			model.addAttribute("listOfShippingAddresses", true);
 			model.addAttribute("classActiveOrders", true);
-			model.addAttribute("listOfCreditCards", true); // why change to listOfCreditCards? Otherwise display update
-															// info in same tab as list
+			model.addAttribute("listOfCreditCards", true); 
 			model.addAttribute("displayOrderDetail", true);
 
 
