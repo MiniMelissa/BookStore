@@ -10,6 +10,7 @@ import com.xumeng.bookstore.Service.CartItemService;
 import com.xumeng.bookstore.domain.Book;
 import com.xumeng.bookstore.domain.BookToCartItem;
 import com.xumeng.bookstore.domain.CartItem;
+import com.xumeng.bookstore.domain.Order;
 import com.xumeng.bookstore.domain.ShoppingCart;
 import com.xumeng.bookstore.domain.User;
 import com.xumeng.bookstore.repository.BookToCartItemRepository;
@@ -77,6 +78,10 @@ public class CartItemServiceImpl implements CartItemService{
 	
 	public CartItem save(CartItem cartItem) {
 		return cartItemRepository.save(cartItem);
+	}
+
+	public 	List<CartItem> findByOrder(Order order){
+		return cartItemRepository.findByOrder(order);
 	}
 
 }
