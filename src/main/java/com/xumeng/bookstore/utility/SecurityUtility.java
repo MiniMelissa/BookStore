@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SecurityUtility {
-	private static final String SALT = "salt"; // salt should be protected carefully =>"private
+	private static final String SALT = "salt"; // Salt should be protected carefully
 	
 	@Bean
 	public static BCryptPasswordEncoder passwordEncoder() {
@@ -18,13 +18,13 @@ public class SecurityUtility {
 	
 	@Bean
 	public static String randomPassword() {
-		String SALTCHARS = "ABCDENGHIJKLMNOPQRSTUVWXYZ1234567890";
+		String SALTCHARS = "ABCEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		StringBuilder salt = new StringBuilder();
 		Random rnd = new Random();
 		
-		while(salt.length() < 18) {
-			int index = (int) (rnd.nextFloat()*SALTCHARS.length());
-			salt.append(SALTCHARS).charAt(index);
+		while (salt.length()<18) {
+			int index= (int) (rnd.nextFloat()*SALTCHARS.length());
+			salt.append(SALTCHARS.charAt(index));
 		}
 		String saltStr = salt.toString();
 		return saltStr;

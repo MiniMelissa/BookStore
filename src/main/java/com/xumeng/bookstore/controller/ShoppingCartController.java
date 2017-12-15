@@ -38,6 +38,8 @@ public class ShoppingCartController {
 	@RequestMapping("/cart")
 	public String shoppingCart(Model model, Principal principal) {
 		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		
 		ShoppingCart shoppingCart = user.getShoppingCart();
 		
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
@@ -58,6 +60,7 @@ public class ShoppingCartController {
 			Model model, Principal principal
 			) {
 		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
 		book = bookService.findOne(book.getId());
 		
 		if (Integer.parseInt(qty) > book.getInStockNumber()) {

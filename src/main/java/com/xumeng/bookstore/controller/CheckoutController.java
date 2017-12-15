@@ -87,6 +87,7 @@ public class CheckoutController {
 		if (cartId != user.getShoppingCart().getId()) {
 			return "badRequestPage";
 		}
+		model.addAttribute("user", user);
 
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
 
@@ -194,6 +195,7 @@ public class CheckoutController {
 			return "redirect:/checkout?id=" + shoppingCart.getId() + "&missingRequiredField=true";
 		
 		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
 		
 		Order order = orderService.createOrder(shoppingCart, shippingAddress, billingAddress, payment, shippingMethod, user);
 		System.out.println("?????????" + order.getCartItemList().size());
@@ -220,6 +222,8 @@ public class CheckoutController {
 	public String setShippingAddress(@RequestParam("userShippingId") Long userShippingId, Principal principal,
 			Model model) {
 		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		
 		UserShipping userShipping = userShippingService.findById(userShippingId);
 
 		if (userShipping.getUser().getId() != user.getId()) {
@@ -271,6 +275,7 @@ public class CheckoutController {
 	public String setPaymentMethod(@RequestParam("userPaymentId") Long userPaymentId, Principal principal,
 			Model model) {
 		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
 		UserPayment userPayment = userPaymentService.findById(userPaymentId);
 		UserBilling userBilling = userPayment.getUserBilling();
 
