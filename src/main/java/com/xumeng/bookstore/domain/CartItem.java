@@ -88,12 +88,12 @@ public class CartItem {
 		this.shoppingCart = shoppingCart;
 	}
 
-	public Order getOder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOder(Order oder) {
-		this.order = oder;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 	
 	

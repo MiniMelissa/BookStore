@@ -46,7 +46,7 @@ public class MailConstructor {
 		 context.setVariable("user", user);
 		 context.setVariable("cartItemList", order.getCartItemList());
 		 String text = templateEngine.process("orderConfirmationEmailTemplate", context);
-		 
+		 //System.out.println("?????????????WTF????????" + text);
 		 MimeMessagePreparator messagePreparator = new MimeMessagePreparator() {
 			 @Override
 			 public void prepare(MimeMessage mimeMessage) throws Exception{

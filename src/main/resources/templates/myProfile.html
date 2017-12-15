@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<hr
-			style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+			style="position: absolute; width: 85%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
 		
 
 		<div class="row" style="margin-top: 60px;">
@@ -439,30 +439,45 @@
 
 											<div class="row">
 												<div class="col-xs-7">
-													<div class="form-group">
-														<label>* Expiration Date</label>
+													<div class="form-group">																									
+														<label >* Expiration Date</label>
 														<div class="row">
 															<div class="col-xs-6">
-																<select class="form-control" name="expiryMonth"
+															
+																<select class="form-control"
+																	th:name="expiryMonth"
+																	th:value="${userPayment.expiryMonth}"
+																	required="required">
+																	<option disabled="disabled">--Month--</option>
+																	<option th:each="month : ${monthMap.keySet()}"
+																		th:text="${monthMap.get(month)}" th:value="${month}"
+																		th:selected="(${userPayment.expiryMonth}==${month})"></option>
+																</select>
+
+																<!-- <select id="expirationDate" class="form-control" name="expiryMonth"
 																	required="required"
 																	th:value="${userPayment.expiryMonth}">
-																	<option disabled="disabled">-- Month --</option>
-																	<option value="01">Jan (01)</option>
-																	<option value="02">Feb (02)</option>
-																	<option value="03">Mar (03)</option>
-																	<option value="04">Apr (04)</option>
-																	<option value="05">May (05)</option>
-																	<option value="06">June (06)</option>
-																	<option value="07">July (07)</option>
-																	<option value="08">Aug (08)</option>
-																	<option value="09">Sep (09)</option>
+																	<option disabled="disabled"> Month </option>
+																	<option value="1">Jan (01)</option>
+																	<option value="2">Feb (02)</option>
+																	<option value="3">Mar (03)</option>
+																	<option value="4">Apr (04)</option>
+																	<option value="5">May (05)</option>
+																	<option value="6">June (06)</option>
+																	<option value="7">July (07)</option>
+																	<option value="8">Aug (08)</option>
+																	<option value="9">Sep (09)</option>
 																	<option value="10">Oct (10)</option>
 																	<option value="11">Nov (11)</option>
 																	<option value="12">Dec (12)</option>
-																</select>
+																</select> -->
+																
 															</div>
+															
+															
+															
 															<div class="col-xs-6">
-																<select class="form-control" name="expiryYear"
+																<select id="expirationDate" class="form-control" th:name="expiryYear"
 																	th:value="${userPayment.expiryYear}">
 																	<option disabled="disabled">-- Year --</option>
 																	<option value="2017">2017</option>

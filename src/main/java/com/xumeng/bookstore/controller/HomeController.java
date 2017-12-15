@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -262,6 +263,12 @@ public class HomeController {
 			List<String> stateList = USConstants.listOfUSStatesCode;
 			Collections.sort(stateList);
 			model.addAttribute("stateList", stateList);
+			
+
+			Map<Integer, String> monthMap = USConstants.mapOfMonths;
+			model.addAttribute("monthMap", monthMap);
+			
+			
 
 			model.addAttribute("addNewCreditCard", true);
 			model.addAttribute("classActiveBilling", true);

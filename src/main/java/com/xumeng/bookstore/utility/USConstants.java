@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class USConstants {
 
@@ -68,6 +69,22 @@ public class USConstants {
 	
 	public final static List<String> listOfUSStatesCode = new ArrayList<>(mapOfUSStates.keySet());
 	public final static List<String> listOfUSStatesName = new ArrayList<>(mapOfUSStates.values());
-
 	
+	public final static Map<Integer, String> mapOfMonths = new HashMap<Integer,String>() {
+		{
+			put(1, "Jan(01)");
+			put(2, "Feb(02)");
+			put(3, "Mar(03)");
+			put(4, "Apr(04)");
+			put(5, "May(05)");
+			put(6, "Jun(06)");
+			put(7, "Jul(07)");
+			put(8, "Aug(08)");
+			put(9, "Sep(09)");
+			put(10, "Oct(10)");
+			put(11, "Nov(11)");
+			put(12, "Dec(12)");
+		}
+	
+	};
 }
