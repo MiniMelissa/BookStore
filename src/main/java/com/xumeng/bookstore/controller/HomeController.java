@@ -220,6 +220,14 @@ public class HomeController {
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList", stateList);
+		
+		Map<Integer, String> monthMap = USConstants.mapOfMonths;
+		model.addAttribute("monthMap", monthMap);
+		 
+		List<Integer> yearList = USConstants.listOfYears;
+		model.addAttribute("yearList", yearList);
+		
+		
 		model.addAttribute("userPaymentList", user.getUserPaymentList());
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		model.addAttribute("orderList", user.getOrderList());
@@ -267,7 +275,9 @@ public class HomeController {
 
 			Map<Integer, String> monthMap = USConstants.mapOfMonths;
 			model.addAttribute("monthMap", monthMap);
-			
+			 
+			List<Integer> yearList = USConstants.listOfYears;
+			model.addAttribute("yearList", yearList);
 			
 
 			model.addAttribute("addNewCreditCard", true);

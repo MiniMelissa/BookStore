@@ -235,9 +235,19 @@
 												<label>* Expiration Date</label>
 												<div class="row">
 													<div class="col-xs-6">
-														<select class="form-control" name="expiryMonth"
+														<select class="form-control"
+																	th:name="expiryMonth"
+																	th:value="${payment.expiryMonth}"
+																	required="required">
+																	<option disabled="disabled">--Month--</option>
+																	<option th:each="month : ${monthMap.keySet()}"
+																		th:text="${monthMap.get(month)}" th:value="${month}"
+																		th:selected="(${payment.expiryMonth}==${month})"></option>
+																</select>
+														
+														<!-- <select class="form-control" name="expiryMonth"
 															required="required" th:value="${payment.expiryMonth}">
-															<option disabled="disabled">-- Month --</option>
+															<option disabled="disabled"> Month </option>
 															<option value="01">Jan (01)</option>
 															<option value="02">Feb (02)</option>
 															<option value="03">Mar (03)</option>
@@ -250,26 +260,21 @@
 															<option value="10">Oct (10)</option>
 															<option value="11">Nov (11)</option>
 															<option value="12">Dec (12)</option>
-														</select>
+														</select> -->
+														
+														
 													</div>
 													<div class="col-xs-6">
-														<select class="form-control" name="expiryYear"
-															th:value="${payment.expiryYear}">
-															<option disabled="disabled">-- Year --</option>
-															<option value="2017">2017</option>
-															<option value="2018">2018</option>
-															<option value="19">2019</option>
-															<option value="20">2020</option>
-															<option value="21">2021</option>
-															<option value="22">2022</option>
-															<option value="23">2023</option>
-															<option value="23">2024</option>
-															<option value="23">2025</option>
-															<option value="23">2026</option>
-															<option value="23">2027</option>
-															<option value="23">2028</option>
-															<option value="23">2029</option>
-														</select>
+														<select class="form-control"
+																		th:name="expiryYear"
+																		th:value="${payment.expiryYear}"
+																		required="required">
+																		<option disabled="disabled">--Year--</option>
+																		<option th:each="year : ${yearList}"
+																			th:text="${year}" 
+																			th:selected="(${payment.expiryYear}==${year})"></option>
+														</select>																												
+														
 													</div>
 												</div>
 											</div>

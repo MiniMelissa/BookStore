@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -143,6 +144,12 @@ public class CheckoutController {
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
 		model.addAttribute("stateList", stateList);
+		
+		Map<Integer, String> monthMap = USConstants.mapOfMonths;
+		model.addAttribute("monthMap", monthMap);
+		 
+		List<Integer> yearList = USConstants.listOfYears;
+		model.addAttribute("yearList", yearList);
 
 		model.addAttribute("classActiveShipping", true);
 
@@ -234,6 +241,12 @@ public class CheckoutController {
 
 			List<UserShipping> userShippingList = user.getUserShippingList();
 			List<UserPayment> userPaymentList = user.getUserPaymentList();
+			
+			Map<Integer, String> monthMap = USConstants.mapOfMonths;
+			model.addAttribute("monthMap", monthMap);
+			 
+			List<Integer> yearList = USConstants.listOfYears;
+			model.addAttribute("yearList", yearList);
 
 			model.addAttribute("userShippingList", userShippingList);
 			model.addAttribute("userPaymentList", userPaymentList);
@@ -279,6 +292,12 @@ public class CheckoutController {
 			List<String> stateList = USConstants.listOfUSStatesCode;
 			Collections.sort(stateList);
 			model.addAttribute("stateList", stateList);
+			
+			Map<Integer, String> monthMap = USConstants.mapOfMonths;
+			model.addAttribute("monthMap", monthMap);
+			 
+			List<Integer> yearList = USConstants.listOfYears;
+			model.addAttribute("yearList", yearList);
 
 			List<UserShipping> userShippingList = user.getUserShippingList();
 			List<UserPayment> userPaymentList = user.getUserPaymentList();

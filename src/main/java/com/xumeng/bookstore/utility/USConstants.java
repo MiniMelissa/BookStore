@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class USConstants {
 
@@ -86,5 +85,21 @@ public class USConstants {
 			put(12, "Dec(12)");
 		}
 	
+	};
+	
+	public final static List<Integer> listOfYears = new ArrayList<Integer>() {
+		{
+			add(2017);
+			add(2018);
+			add(2019);
+			add(2020);
+			add(2021);
+			add(2022);
+			add(2023);
+			add(2024);
+			add(2025);
+			add(2026);
+
+		}
 	};
 }
